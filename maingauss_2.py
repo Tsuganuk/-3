@@ -481,10 +481,10 @@ if __name__ == '__main__':
 
     # Построение спектра
     plt.figure(3)
-    t  = np.arange(1250)
-    sp  = np.fft.fft(Ez)
-    freq = np.fft.fftfreq(t.shape[-1])
-    plt.plot (abs(freq[:100]) * 10e9, (sp.real[:100] **2 + sp.imag[:100] ** 2) / max(abs(sp.real[:100] **2 + sp.imag[:100] ** 2)))
-    plt.xlabel('f, ГГц')
+    t  = np.arange(0,maxTime*dt, dt)
+    sp  = np.fft.fft(probes[0].E)
+    freq = np.fft.fftfreq(maxTime, dt)
+    plt.plot (abs(freq[:100]), (sp.real[:100]**2 + sp.imag[:100] ** 2) / max(abs(sp.real[:100] **2 + sp.imag[:100] ** 2)))
+    plt.xlabel('f, Гц')
     display.stop()
     plt.show()
